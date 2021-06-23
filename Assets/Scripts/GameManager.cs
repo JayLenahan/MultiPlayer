@@ -5,6 +5,37 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+  public static GameManager instance;
+  public static GameObject LoginCanvas;
+
+  private bool LoggedIntoAccount = false;
+  private string AccountName = "Test Account Name";
+
+  private void Awake()
+  {
+    if (instance == null)
+    {
+      instance = this;
+    }
+    else if (instance != this)
+    {
+      Debug.Log("Instance already exists, destroying object!");
+      Destroy(this);
+    }
+    LoginCanvas = GameObject.Find("MainPanel");
+    DontDestroyOnLoad(this);
+  }
+
+  private void Update()
+  {
+    if (NetworkManager.Singleton.IsServer)
+    {
+      LoginCanvas.SetActive(false);
+    }
+  }
+
+
+
   void OnGUI()
   {
     GUILayout.BeginArea(new Rect(10, 10, 300, 300));
@@ -25,8 +56,11 @@ public class GameManager : MonoBehaviour
   static void StartButtons()
   {
     if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
-    if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
-    if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
+  }
+
+  public void ConnectedToServer()
+  {
+    NetworkManager.Singleton.StartClient();
   }
 
   static void StatusLabels()

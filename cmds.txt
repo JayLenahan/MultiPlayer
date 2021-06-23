@@ -1,0 +1,1 @@
+MultiPlayer.exe -logfile log-server.txt -mlapi server

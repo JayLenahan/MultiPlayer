@@ -6,10 +6,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
   public static GameManager instance;
-  public static GameObject LoginCanvas;
-
-  private bool LoggedIntoAccount = false;
-  private string AccountName = "Test Account Name";
 
   private void Awake()
   {
@@ -22,7 +18,6 @@ public class GameManager : MonoBehaviour
       Debug.Log("Instance already exists, destroying object!");
       Destroy(this);
     }
-    LoginCanvas = GameObject.Find("MainPanel");
     DontDestroyOnLoad(this);
   }
 
@@ -30,7 +25,7 @@ public class GameManager : MonoBehaviour
   {
     if (NetworkManager.Singleton.IsServer)
     {
-      LoginCanvas.SetActive(false);
+      UIManager.LoginCanvas.SetActive(false);
     }
   }
 
@@ -87,5 +82,10 @@ public class GameManager : MonoBehaviour
         }
       }
     }
+  }
+
+  public void QuitGame()
+  {
+    Application.Quit();
   }
 }

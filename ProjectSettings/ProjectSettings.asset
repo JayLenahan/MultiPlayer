@@ -661,10 +661,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: a8163068-f981-4b1f-b21a-fe335ba0872a
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: MultiPlayer (1)
+  organizationId: asc3ndance
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
